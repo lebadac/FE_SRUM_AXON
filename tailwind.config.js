@@ -9,56 +9,45 @@ module.exports = {
     extend: {
       colors: {
         primary: {
-          "50": "#eff6ff",
-          "100": "#dbeafe",
-          "200": "#bfdbfe",
-          "300": "#93c5fd",
-          "400": "#60a5fa",
-          "500": "#3b82f6",
-          "600": "#2563eb",
-          "700": "#1d4ed8",
-          "800": "#1e40af",
-          "900": "#1e3a8a",
-          "950": "#172554"
-        }
+          50: '#F9FDF2',
+          100: '#F0FAE3',
+          200: '#E9F8F1',
+          300: '#BAE8D4',
+          400: '#99DDBF',
+          500: '#6BCDA1',
+          600: '#4EC38F',
+          700: '#22B473', // Main primary color
+          800: '#1C9A61',
+          900: '#0C4D30',
+        },
+        secondary: '#ECBB2E',
+        dark: {
+          bg: '#242424',
+          text: '#000000',
+        },
+        light: {
+          bg: '#F9FDF2',
+          text: '#FFFFFF',
+        },
+        neutral: {
+          100: '#FCFEF9',
+          200: '#FBFEF6',
+          300: '#FAFDF5',
+          400: '#E3E6DC',
+          500: '#B1B4AC',
+          600: '#898B85',
+          700: '#696A66',
+        },
       },
       fontFamily: {
-        'body': [
-          'Inter', 
-          'ui-sans-serif', 
-          'system-ui', 
-          '-apple-system', 
-          'system-ui', 
-          'Segoe UI', 
-          'Roboto', 
-          'Helvetica Neue', 
-          'Arial', 
-          'Noto Sans', 
-          'sans-serif', 
-          'Apple Color Emoji', 
-          'Segoe UI Emoji', 
-          'Segoe UI Symbol', 
-          'Noto Color Emoji'
-        ],
-        'sans': [
-          'Inter', 
-          'ui-sans-serif', 
-          'system-ui', 
-          '-apple-system', 
-          'system-ui', 
-          'Segoe UI', 
-          'Roboto', 
-          'Helvetica Neue', 
-          'Arial', 
-          'Noto Sans', 
-          'sans-serif', 
-          'Apple Color Emoji', 
-          'Segoe UI Emoji', 
-          'Segoe UI Symbol', 
-          'Noto Color Emoji'
-        ]
-      }
+        'jakarta': ['Plus Jakarta Sans', 'sans-serif'],
+        'poppins': ['Poppins', 'sans-serif'],
+        'inter': ['Inter', 'sans-serif'],
+      },
     },
+  },
+  variants: {
+    extend: {},
   },
   plugins: [
     require('flowbite/plugin')

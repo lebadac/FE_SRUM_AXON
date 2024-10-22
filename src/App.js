@@ -10,6 +10,8 @@ import Header from "./components/Header";
 import Footer from "./components/Footer";
 import Signup from './components/Signup';
 import AuthRoute from './components/ProtectedRoute/AuthRoute';
+import Dashboard from './components/Admin/Dashboard';
+import ForgotPassword from './components/ForgotPassword';
 
 function App() {
   return (
@@ -20,14 +22,17 @@ function App() {
           <Routes>
             <Route path="/login" element={<Login />} />
             <Route path="/signup" element={<Signup />} />
-            
+            <Route path="/forgot-password" element={<ForgotPassword />} />
+            <Route path="/dashboard" element={<Dashboard />} />
+
+
             {/* Protected route for all authenticated users */}
             <Route element={<AuthRoute />}>
               <Route path="/" element={<HomePage />} />
             </Route>
-            
-            {/* Protected route for ADMIN users only */}
-            {/* <Route element={<AuthRoute allowedRoles={['ADMIN']} />}>
+
+            {/* Protected route for ADMIN users only
+            <Route element={<AuthRoute allowedRoles={['ADMIN']} />}>
               <Route path="/dashboard" element={<Dashboard />} />
             </Route> */}
 
