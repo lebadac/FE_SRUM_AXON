@@ -2,17 +2,17 @@ import React from "react";
 
 const Footer = () => {
   return (
-    <footer className="p-4 bg-white md:p-8 lg:p-10 dark:bg-gray-800">
+    <footer className="p-4 bg-white md:p-8 lg:p-10 dark:bg-gray-800 font-jakarta">
       <div className="mx-auto max-w-screen-xl text-center">
-        <ul className="flex flex-wrap justify-center items-center mb-6 text-gray-900 dark:text-white">
+        <ul className="flex flex-wrap justify-center items-center mb-6 text-gray-900 dark:text-white font-inter">
           <li>
-            <a href="#" className="mr-4 hover:underline md:mr-6 ">About</a>
+            <a href="#" className="mr-4 hover:underline md:mr-6">About</a>
           </li>
           <li>
             <a href="#" className="mr-4 hover:underline md:mr-6">Premium</a>
           </li>
           <li>
-            <a href="#" className="mr-4 hover:underline md:mr-6 ">Campaigns</a>
+            <a href="#" className="mr-4 hover:underline md:mr-6">Campaigns</a>
           </li>
           <li>
             <a href="#" className="mr-4 hover:underline md:mr-6">Blog</a>
@@ -27,7 +27,7 @@ const Footer = () => {
             <a href="#" className="mr-4 hover:underline md:mr-6">Contact</a>
           </li>
         </ul>
-        <span className="text-sm text-gray-500 sm:text-center dark:text-gray-400">© 2021-2022 <a href="#" className="hover:underline">Flowbite™</a>. All Rights Reserved.</span>
+        <span className="text-sm text-gray-500 sm:text-center dark:text-gray-400 font-inter">© 2021-2022 <a href="#" className="hover:underline">Flowbite™</a>. All Rights Reserved.</span>
       </div>
     </footer>
   );

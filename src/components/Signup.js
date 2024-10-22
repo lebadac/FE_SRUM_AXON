@@ -11,7 +11,6 @@ const Signup = () => {
   const navigate = useNavigate();
   const { auth } = useAuth();
 
-  // Check if user is already logged in
   useEffect(() => {
     if (auth.accessToken) {
       navigate('/');
@@ -20,7 +19,7 @@ const Signup = () => {
 
   const onSubmit = async (data) => {
     try {
-      const response = await axiosInstance.post('/user', {
+      const response = await axiosInstance.post('/users', {
         name: data.name,
         email: data.email,
         address: data.address,
@@ -42,64 +41,56 @@ const Signup = () => {
   };
 
   return (
-    <section className="bg-gray-50 dark:bg-gray-900 min-h-screen flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
+    <section className="bg-gray-50 dark:bg-gray-900 min-h-screen flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8 font-jakarta">
       <div className="max-w-md w-full space-y-8 bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md">
-        <h1 className="text-2xl font-bold text-center text-gray-900 dark:text-white">
+        <h1 className="text-2xl font-bold text-center text-gray-900 dark:text-white font-poppins">
           Create your account
         </h1>
         <form onSubmit={handleSubmit(onSubmit)} className="mt-8 space-y-6">
           <div className="space-y-4">
-            {/* Name input */}
             <div>
-              <label htmlFor="name" className="block text-sm font-medium text-gray-700 dark:text-gray-300">Name</label>
+              <label htmlFor="name" className="block text-sm font-medium text-gray-700 dark:text-gray-300 font-inter">Name</label>
               <input
                 type="text"
                 {...register("name", { required: "Name is required" })}
-                className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 dark:bg-gray-700 dark:border-gray-600 dark:text-white"
+                className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 dark:bg-gray-700 dark:border-gray-600 dark:text-white font-inter"
               />
-              {errors.name && <p className="mt-2 text-sm text-red-600">{errors.name.message}</p>}
+              {errors.name && <p className="mt-2 text-sm text-red-600 font-inter">{errors.name.message}</p>}
             </div>
-
-            {/* DOB input */}
+            {/* Other input fields with similar font classes */}
             <div>
-              <label htmlFor="dob" className="block text-sm font-medium text-gray-700 dark:text-gray-300">Date of Birth</label>
+              <label htmlFor="dob" className="block text-sm font-medium text-gray-700 dark:text-gray-300 font-inter">Date of Birth</label>
               <input
                 type="date"
                 {...register("dob", { required: "Date of Birth is required" })}
-                className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 dark:bg-gray-700 dark:border-gray-600 dark:text-white"
+                className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 dark:bg-gray-700 dark:border-gray-600 dark:text-white font-inter"
               />
-              {errors.dob && <p className="mt-2 text-sm text-red-600">{errors.dob.message}</p>}
+              {errors.dob && <p className="mt-2 text-sm text-red-600 font-inter">{errors.dob.message}</p>}
             </div>
-
-            {/* Gender input */}
             <div>
-              <label htmlFor="gender" className="block text-sm font-medium text-gray-700 dark:text-gray-300">Gender</label>
+              <label htmlFor="gender" className="block text-sm font-medium text-gray-700 dark:text-gray-300 font-inter">Gender</label>
               <select
                 {...register("gender", { required: "Gender is required" })}
-                className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 dark:bg-gray-700 dark:border-gray-600 dark:text-white"
+                className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 dark:bg-gray-700 dark:border-gray-600 dark:text-white font-inter"
               >
                 <option value="">Select Gender</option>
                 <option value="male">Male</option>
                 <option value="female">Female</option>
                 <option value="other">Other</option>
               </select>
-              {errors.gender && <p className="mt-2 text-sm text-red-600">{errors.gender.message}</p>}
+              {errors.gender && <p className="mt-2 text-sm text-red-600 font-inter">{errors.gender.message}</p>}
             </div>
-
-            {/* Phone input */}
             <div>
-              <label htmlFor="phone" className="block text-sm font-medium text-gray-700 dark:text-gray-300">Phone</label>
+              <label htmlFor="phone" className="block text-sm font-medium text-gray-700 dark:text-gray-300 font-inter">Phone</label>
               <input
                 type="tel"
                 {...register("phone", { required: "Phone number is required" })}
-                className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 dark:bg-gray-700 dark:border-gray-600 dark:text-white"
+                className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 dark:bg-gray-700 dark:border-gray-600 dark:text-white font-inter"
               />
-              {errors.phone && <p className="mt-2 text-sm text-red-600">{errors.phone.message}</p>}
+              {errors.phone && <p className="mt-2 text-sm text-red-600 font-inter">{errors.phone.message}</p>}
             </div>
-
-            {/* Email input */}
             <div>
-              <label htmlFor="email" className="block text-sm font-medium text-gray-700 dark:text-gray-300">Email</label>
+              <label htmlFor="email" className="block text-sm font-medium text-gray-700 dark:text-gray-300 font-inter">Email</label>
               <input
                 type="email"
                 {...register("email", {
@@ -110,39 +101,33 @@ const Signup = () => {
                   },
                 })}
                 placeholder="Email"
-                className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 dark:bg-gray-700 dark:border-gray-600 dark:text-white"
+                className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 dark:bg-gray-700 dark:border-gray-600 dark:text-white font-inter"
               />
-              {errors.email && <p className="mt-2 text-sm text-red-600">{errors.email.message}</p>}
+              {errors.email && <p className="mt-2 text-sm text-red-600 font-inter">{errors.email.message}</p>}
             </div>
-
-            {/* Address input */}
             <div>
-              <label htmlFor="address" className="block text-sm font-medium text-gray-700 dark:text-gray-300">Address</label>
+              <label htmlFor="address" className="block text-sm font-medium text-gray-700 dark:text-gray-300 font-inter">Address</label>
               <input
                 type="text"
                 {...register("address", {
                   required: "Address is required",
                 })}
                 placeholder="Your Address"
-                className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 dark:bg-gray-700 dark:border-gray-600 dark:text-white"
+                className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 dark:bg-gray-700 dark:border-gray-600 dark:text-white font-inter"
               />
-              {errors.address && <p className="mt-2 text-sm text-red-600">{errors.address.message}</p>}
+              {errors.address && <p className="mt-2 text-sm text-red-600 font-inter">{errors.address.message}</p>}
             </div>
-
-            {/* StudentID input */}
             <div>
-              <label htmlFor="studentId" className="block text-sm font-medium text-gray-700 dark:text-gray-300">Student ID</label>
+              <label htmlFor="studentId" className="block text-sm font-medium text-gray-700 dark:text-gray-300 font-inter">Student ID</label>
               <input
                 type="text"
                 {...register("studentId", { required: "Student ID is required" })}
-                className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 dark:bg-gray-700 dark:border-gray-600 dark:text-white"
+                className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 dark:bg-gray-700 dark:border-gray-600 dark:text-white font-inter"
               />
-              {errors.studentId && <p className="mt-2 text-sm text-red-600">{errors.studentId.message}</p>}
+              {errors.studentId && <p className="mt-2 text-sm text-red-600 font-inter">{errors.studentId.message}</p>}
             </div>
-
-            {/* Password input */}
             <div>
-              <label htmlFor="password" className="block text-sm font-medium text-gray-700 dark:text-gray-300">Password</label>
+              <label htmlFor="password" className="block text-sm font-medium text-gray-700 dark:text-gray-300 font-inter">Password</label>
               <input
                 type="password"
                 {...register("password", {
@@ -157,31 +142,30 @@ const Signup = () => {
                   },
                 })}
                 placeholder="••••••••"
-                className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 dark:bg-gray-700 dark:border-gray-600 dark:text-white"
+                className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 dark:bg-gray-700 dark:border-gray-600 dark:text-white font-inter"
               />
-              {errors.password && <p className="mt-2 text-sm text-red-600">{errors.password.message}</p>}
+              {errors.password && <p className="mt-2 text-sm text-red-600 font-inter">{errors.password.message}</p>}
             </div>
           </div>
 
           <div>
             <button
               type="submit"
-              className="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+              className="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-semibold text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 font-poppins"
             >
               Sign up
             </button>
           </div>
         </form>
 
-        <p className="mt-2 text-center text-sm text-gray-600 dark:text-gray-400">
+        <p className="mt-2 text-center text-sm text-gray-600 dark:text-gray-400 font-inter">
           Already have an account?{' '}
-          <Link to="/login" className="font-medium text-indigo-600 hover:text-indigo-500 dark:text-indigo-400 dark:hover:text-indigo-300">
+          <Link to="/login" className="font-semibold text-indigo-600 hover:text-indigo-500 dark:text-indigo-400 dark:hover:text-indigo-300 font-inter">
             Log in
           </Link>
         </p>
       </div>
 
-      {/* Toast notification container */}
       <ToastContainer />
     </section>
   );
