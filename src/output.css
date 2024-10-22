@@ -1546,21 +1546,6 @@ input:checked + .toggle-bg {
   border-color: rgb(34 180 115 / var(--tw-border-opacity)) !important;
 }
 
-.border-\[\#bbbbbb\] {
-  --tw-border-opacity: 1;
-  border-color: rgb(187 187 187 / var(--tw-border-opacity));
-}
-
-.border-\[\#dcdfe6\] {
-  --tw-border-opacity: 1;
-  border-color: rgb(220 223 230 / var(--tw-border-opacity));
-}
-
-.border-\[\#e7e7e7\] {
-  --tw-border-opacity: 1;
-  border-color: rgb(231 231 231 / var(--tw-border-opacity));
-}
-
 .border-blue-600 {
   --tw-border-opacity: 1;
   border-color: rgb(28 100 242 / var(--tw-border-opacity));
@@ -1590,11 +1575,6 @@ input:checked + .toggle-bg {
   border-color: transparent;
 }
 
-.border-neutral-400 {
-  --tw-border-opacity: 1;
-  border-color: rgb(227 230 220 / var(--tw-border-opacity));
-}
-
 .\!bg-gray-50 {
   --tw-bg-opacity: 1 !important;
   background-color: rgb(249 250 251 / var(--tw-bg-opacity)) !important;
@@ -1608,26 +1588,6 @@ input:checked + .toggle-bg {
 .\!bg-primary-700 {
   --tw-bg-opacity: 1 !important;
   background-color: rgb(34 180 115 / var(--tw-bg-opacity)) !important;
-}
-
-.bg-\[\#22b473\] {
-  --tw-bg-opacity: 1;
-  background-color: rgb(34 180 115 / var(--tw-bg-opacity));
-}
-
-.bg-\[\#242424\] {
-  --tw-bg-opacity: 1;
-  background-color: rgb(36 36 36 / var(--tw-bg-opacity));
-}
-
-.bg-\[\#6c6c6c\] {
-  --tw-bg-opacity: 1;
-  background-color: rgb(108 108 108 / var(--tw-bg-opacity));
-}
-
-.bg-\[\#e9f8f1\] {
-  --tw-bg-opacity: 1;
-  background-color: rgb(233 248 241 / var(--tw-bg-opacity));
 }
 
 .bg-blue-700 {
@@ -1650,6 +1610,11 @@ input:checked + .toggle-bg {
   background-color: rgb(249 250 251 / var(--tw-bg-opacity));
 }
 
+.bg-gray-700 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(55 65 81 / var(--tw-bg-opacity));
+}
+
 .bg-gray-800 {
   --tw-bg-opacity: 1;
   background-color: rgb(31 41 55 / var(--tw-bg-opacity));
@@ -1657,6 +1622,11 @@ input:checked + .toggle-bg {
 
 .bg-gray-900\/50 {
   background-color: rgb(17 24 39 / 0.5);
+}
+
+.bg-green-500 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(14 159 110 / var(--tw-bg-opacity));
 }
 
 .bg-indigo-600 {
@@ -1681,36 +1651,6 @@ input:checked + .toggle-bg {
 
 .bg-white\/50 {
   background-color: rgb(255 255 255 / 0.5);
-}
-
-.bg-dark-bg {
-  --tw-bg-opacity: 1;
-  background-color: rgb(36 36 36 / var(--tw-bg-opacity));
-}
-
-.bg-light-bg {
-  --tw-bg-opacity: 1;
-  background-color: rgb(249 253 242 / var(--tw-bg-opacity));
-}
-
-.bg-neutral-600 {
-  --tw-bg-opacity: 1;
-  background-color: rgb(137 139 133 / var(--tw-bg-opacity));
-}
-
-.bg-primary-50 {
-  --tw-bg-opacity: 1;
-  background-color: rgb(249 253 242 / var(--tw-bg-opacity));
-}
-
-.bg-gray-700 {
-  --tw-bg-opacity: 1;
-  background-color: rgb(55 65 81 / var(--tw-bg-opacity));
-}
-
-.bg-green-500 {
-  --tw-bg-opacity: 1;
-  background-color: rgb(14 159 110 / var(--tw-bg-opacity));
 }
 
 .object-contain {
@@ -1830,14 +1770,6 @@ input:checked + .toggle-bg {
   text-align: center;
 }
 
-.font-inter {
-  font-family: Inter, sans-serif;
-}
-
-.font-jakarta {
-  font-family: Plus Jakarta Sans, sans-serif;
-}
-
 .font-sans {
   font-family: ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
 }
@@ -1920,16 +1852,6 @@ input:checked + .toggle-bg {
   letter-spacing: -0.025em;
 }
 
-.text-\[\#1f263d\] {
-  --tw-text-opacity: 1;
-  color: rgb(31 38 61 / var(--tw-text-opacity));
-}
-
-.text-\[\#6c6c6c\] {
-  --tw-text-opacity: 1;
-  color: rgb(108 108 108 / var(--tw-text-opacity));
-}
-
 .text-blue-600 {
   --tw-text-opacity: 1;
   color: rgb(28 100 242 / var(--tw-text-opacity));
@@ -1970,11 +1892,6 @@ input:checked + .toggle-bg {
   color: rgb(88 80 236 / var(--tw-text-opacity));
 }
 
-.text-neutral-700 {
-  --tw-text-opacity: 1;
-  color: rgb(105 106 102 / var(--tw-text-opacity));
-}
-
 .text-primary-600 {
   --tw-text-opacity: 1;
   color: rgb(78 195 143 / var(--tw-text-opacity));
@@ -1993,21 +1910,6 @@ input:checked + .toggle-bg {
 .text-white {
   --tw-text-opacity: 1;
   color: rgb(255 255 255 / var(--tw-text-opacity));
-}
-
-.text-light-text {
-  --tw-text-opacity: 1;
-  color: rgb(255 255 255 / var(--tw-text-opacity));
-}
-
-.text-neutral-500 {
-  --tw-text-opacity: 1;
-  color: rgb(177 180 172 / var(--tw-text-opacity));
-}
-
-.text-neutral-600 {
-  --tw-text-opacity: 1;
-  color: rgb(137 139 133 / var(--tw-text-opacity));
 }
 
 .antialiased {
