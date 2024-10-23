@@ -45,6 +45,7 @@ function ProjectList() {
     };
 
     return (
+        <div className='screen'>
             <div className="leader-container">
                 <div className="leader-left-container">
                     
@@ -151,6 +152,7 @@ function ProjectList() {
         <div className="leader-right-container">
             <img id='img1' src={banner} alt="Right Side Banner" />
         </div>
+      </div>
       </div>
     );
 }

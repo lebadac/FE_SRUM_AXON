@@ -1,20 +1,24 @@
 * {
-    color: #035C27;
-    font-family: Montserrat;
-    font-size: 24px;
-    font-style: normal;
-    font-weight: 700;
-    line-height: normal;
+  color: #035c27;
+  font-family: Montserrat;
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
 }
 
 .screen {
-    width: 100vw;
-    height: 100vh;
-    background: linear-gradient(180deg, rgba(177, 226, 178, 0.60) 16.5%, rgba(194, 239, 246, 0.60) 91%);
-    background-repeat: no-repeat;
-    display: flex;
-    justify-content: center; /* Center horizontally */
-    align-items: center; /* Center vertically */
+  width: 100vw;
+  height: 100vh;
+  background: linear-gradient(
+    180deg,
+    rgba(177, 226, 178, 0.6) 16.5%,
+    rgba(194, 239, 246, 0.6) 91%
+  );
+  background-repeat: no-repeat;
+  display: flex;
+  justify-content: center; /* Center horizontally */
+  align-items: center; /* Center vertically */
 }
 
 .after-submit-container,
@@ -38,7 +42,7 @@
 .leader-left-container{
     width: 792px;
     height: 867px;
-    margin: 32px 99px 23px 51px;
+    margin: 32px 60px 23px 60px;
     display: flex;
 }
 #input-project {
@@ -59,9 +63,9 @@
 }
 
 .require-skill h3 {
-    font-weight: bold;
-    color: #2d653d; /* Màu xanh đậm cho tiêu đề */
-    margin-bottom: 15px;
+  font-weight: bold;
+  color: #2d653d; /* Màu xanh đậm cho tiêu đề */
+  margin-bottom: 15px;
 }
 
 /* Grid layout cho danh sách kỹ năng */
@@ -80,10 +84,10 @@
 }
 
 .skill h4 {
-    font-size: 18px;
-    font-weight: bold;
-    margin: 0;
-    color: black;
+  font-size: 18px;
+  font-weight: bold;
+  margin: 0;
+  color: black;
 }
 
 .checkmark {
@@ -95,7 +99,7 @@
 }
 
 .leader-fill-in{
-    width: 100%;
+    width: 76%;
 }
 
 .leader-right-container{
@@ -104,9 +108,10 @@
     right: 0;
 }
 
-#img1{
-    border-radius: 0px 50px 50px 0px;
-  
+#img1 {
+  border-radius: 0px 50px 50px 0px;
+  width: 698px;
+  height: 867px;
 }
 
 .date-picker {
@@ -139,12 +144,12 @@
 }
 
 .time-line {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    position: relative;
-    margin-bottom: 30px;
-    padding-right: 58px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  margin-bottom: 30px;
+  padding-right: 58px;
 }
 
 .step {
@@ -226,7 +231,110 @@
 
 
 .step:first-child::before {
-    display: none;
+  display: none;
+}
+
+.fill-in {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: repeat(3, 1fr);
+  gap: 20px;
+}
+
+.firstname {
+  grid-area: 1 / 1 / 2 / 2;
+}
+.lastname {
+  grid-area: 1 / 2 / 2 / 3;
+}
+.gender {
+  grid-area: 2 / 1 / 3 / 2;
+  display: flex;
+  flex-direction: column;
+}
+.gender-ratio > label {
+  margin-top: 20px;
+}
+
+.gender-ratio {
+  top: 20px;
+  display: flex;
+  flex: 1;
+  justify-content: space-evenly;
+}
+.gender-ratio > label {
+  color: black;
+}
+.gender-ratio label input {
+  margin-left: 5px;
+}
+.studentID {
+  grid-area: 2 / 2 / 3 / 3;
+  display: flex;
+  flex-direction: column;
+  gap: 21px;
+}
+.studentID > h4 {
+  color: black;
+}
+.email {
+  grid-area: 3 / 1 / 4 / 2;
+}
+.mobile {
+  grid-area: 3 / 2 / 4 / 3;
+}
+
+.skills-box {
+  height: 250px; /* Chiều cao cố định */
+  width: 100%;
+  overflow-y: auto; /* Kích hoạt cuộn dọc nếu nội dung vượt quá */
+  padding: 18px;
+  background-color: #f5f5f5;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+}
+
+.skill-items {
+  display: flex;
+  flex-direction: row;
+  gap: 40px;
+}
+
+.skill-items-list > label {
+  color: #000;
+}
+
+.skill-items-list > label > input {
+  margin-right: 10px;
+}
+
+.skills-box h3 {
+  padding-bottom: 10px;
+}
+
+.skills label {
+  display: block;
+  margin-bottom: 10px;
+}
+
+.skills-box::-webkit-scrollbar {
+  width: 5px;
+}
+
+.skills-box::-webkit-scrollbar-thumb {
+  background-color: #28a745; /* Màu thanh cuộn */
+  border-radius: 10px;
+}
+input[type="text"],
+input[type="email"],
+input[type="tel"],
+select {
+  width: 100%;
+  padding: 10px;
+  /* margin-bottom: 20px; */
+  border-radius: 5px;
+  margin-right: 20px;
+  border: 1px solid #ccc;
 }
 
 
@@ -241,7 +349,7 @@
     align-items: center;
 }
 .edit-button-container{
-    margin-right: 200px;
+    margin-right: 20px;
 }
 .edit-button-container,
 .button-container {
@@ -262,6 +370,7 @@
     border: 3px solid #046F2E;
     background: var(--Backgrounds-Primary, #FFF);
     margin-top: 80px;
+    margin-right: 26px;
 }
 
 /* After Submit */

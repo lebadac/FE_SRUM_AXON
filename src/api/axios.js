@@ -9,11 +9,7 @@ const axiosInstance = axios.create({
   },
 });
 
-export const setupInterceptors = (
-  getAccessToken,
-  refreshAuthToken,
-  logout
-) => {
+export const setupInterceptors = (getAccessToken, logout) => {
   axiosInstance.interceptors.request.use(
     (config) => {
       const accessToken = getAccessToken();
@@ -27,19 +23,9 @@ export const setupInterceptors = (
 
   axiosInstance.interceptors.response.use(
     (response) => response,
-    async (error) => {
-      const originalRequest = error.config;
-      if (error.response?.status === 401 && !originalRequest._retry) {
-        originalRequest._retry = true;
-        try {
-          await refreshAuthToken();
-          const newAccessToken = getAccessToken();
-          originalRequest.headers['Authorization'] = `Bearer ${newAccessToken}`;
-          return axiosInstance(originalRequest);
-        } catch (refreshError) {
-          logout();
-          return Promise.reject(refreshError);
-        }
+    (error) => {
+      if (error.response?.status === 401) {
+        logout();
       }
       return Promise.reject(error);
     }

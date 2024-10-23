@@ -1,11 +1,11 @@
-import React from 'react';
-import './App.css';
-import { Routes, Route, Navigate } from 'react-router-dom';
-import { ToastContainer } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
-import { AuthProvider } from './context/AuthProvider';
-import HomePage from './components/Home'
-import Login from './components/Login';
+import React from "react";
+import "./App.css";
+import { Routes, Route, Navigate } from "react-router-dom";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import { AuthProvider } from "./context/AuthProvider";
+import HomePage from "./components/Home";
+import Login from "./components/Login";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 import Signup from './components/Signup';
@@ -41,7 +41,7 @@ function App() {
     //     <ToastContainer position="top-right" autoClose={3000} hideProgressBar={false} />
     //   </div>
     // </AuthProvider>
-    <EditProject/>
+    <ProjectList/>
 
   );
 }

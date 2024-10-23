@@ -7,7 +7,6 @@ const Header = () => {
   const [isDarkMode, setIsDarkMode] = useState(false);
   const { auth, logout, user } = useAuth();
 
-  // Check for dark mode preference on initial load
   useEffect(() => {
     const storedTheme = localStorage.getItem('theme');
     if (storedTheme === 'dark' || (!storedTheme && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
@@ -19,7 +18,6 @@ const Header = () => {
     }
   }, []);
 
-  // Toggle dark mode
   const toggleDarkMode = () => {
     if (isDarkMode) {
       document.documentElement.classList.remove('dark');
@@ -31,20 +29,17 @@ const Header = () => {
     setIsDarkMode(!isDarkMode);
   };
 
-  // Handle login/logout button click
   const handleAuthAction = () => {
     if (auth.accessToken) {
-      // Perform logout
       logout();
       navigate('/login');
     } else {
-      // Perform login redirect
       navigate('/login');
     }
   };
 
   return (
-    <header className="antialiased">
+    <header className="antialiased font-jakarta">
       <nav className="bg-white border-gray-200 px-4 lg:px-6 py-2.5 dark:bg-gray-800">
         <div className="flex flex-wrap justify-between items-center">
           <div className="flex justify-start items-center">
@@ -55,24 +50,23 @@ const Header = () => {
             </button>
             <Link to="/" className="flex mr-4">
               <img src="https://flowbite.s3.amazonaws.com/logo.svg" className="mr-3 h-8" alt="Logo" />
-              <span className="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">WebDev</span>
+              <span className="self-center text-2xl font-semibold whitespace-nowrap dark:text-white font-poppins">WebDev</span>
             </Link>
           </div>
           <div className="flex items-center lg:order-2">
             {user && (
-              <span className="text-sm text-gray-700 dark:text-gray-300 mr-4">
+              <span className="text-sm text-gray-700 dark:text-gray-300 mr-4 font-inter">
                 {user.name}: {user.role}
               </span>
             )}
             <button
               type="button"
               onClick={handleAuthAction}
-              className="text-white bg-primary-700 hover:bg-primary-800 focus:ring-4 focus:ring-primary-300 font-medium rounded-lg text-xs px-3 py-1.5 mr-2 dark:bg-primary-600 dark:hover:bg-primary-700 focus:outline-none dark:focus:ring-primary-800"
+              className="text-white bg-primary-600 hover:bg-primary-800 focus:ring-4 focus:ring-primary-300 font-semibold rounded-lg text-xs px-3 py-1.5 mr-2 dark:bg-primary-600 dark:hover:bg-primary-700 focus:outline-none dark:focus:ring-primary-800 font-poppins"
             >
               {auth.accessToken ? "Logout" : "Login"}
             </button>
 
-            {/* Dark mode toggle button */}
             <button
               onClick={toggleDarkMode}
               className="text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg text-xs px-3 py-1.5"
