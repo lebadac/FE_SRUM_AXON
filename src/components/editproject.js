@@ -6,7 +6,7 @@ import notFillIcon from '../assets/not-fill.svg'; // Adjust the path as necessar
 import fillIcon from '../assets/fill.svg'; // Adjust the path as necessary
 import { useNavigate } from 'react-router-dom';
 
-function ProjectList() {
+function EditList() {
     // Quản lý trạng thái của các trường
     const [projectName, setProjectName] = useState('');
     const [currentStep, setCurrentStep] = useState(0);
@@ -127,12 +127,14 @@ function ProjectList() {
     };
  
     // Define the click handler function
-    const handleCreateButtonClick = () => {
+
+        // Define the click handler for the Resubmit button
+    const handleResubmitClick = () => {
         if (projectName.trim() === '') {
             alert('Please enter a project name before creating.');
             return;
         }
-
+        
         if (dateErrorMessage) {
             alert('Please correct the date errors before creating.');
             return;
@@ -142,14 +144,17 @@ function ProjectList() {
             alert('Please fill in all required fields.');
             return;
         }
-        // Perform any logic you need when the button is clicked
-        console.log('Create button clicked');
-        // Navigate to the aftersubmit page
-        navigate('/aftersubmit');
+        // Perform any logic you need for resubmitting
+        console.log('Resubmit button clicked');
+        // Example: Call an API to resubmit data
+    navigate('/aftersubmit'); 
     };
-    const handleCancelButtonClick = () => {
+
+
+    // Define the click handler for the Delete button
+    const handleDeleteClick = () => {
         // Perform any logic you need for deleting
-        console.log('Cancel button clicked');
+        console.log('Delete button clicked');
         // Example: Call an API to delete data
         navigate('/aftersubmit');
     };
@@ -248,19 +253,21 @@ function ProjectList() {
                         <option value="over100">Over 100 members</option>
                     </select>
                 </div>
-                <div className ="create-button-container">
                 
-                    <div className="button-container">
-                        <button className="create-button" onClick={handleCreateButtonClick}>
-                            Create
-                        </button>
-                    </div>
-                    <div className="button-container">
-                        <button className="delete-button" onClick={handleCancelButtonClick}>
-                            Cancel
-                        </button>
-                    </div>
-                </div>
+                <div className ="edit-container">
+                   <div className="edit-button-container">
+                       <button className="resubmit-button" onClick={handleResubmitClick}>
+                           Resubmit
+                       </button>
+                   </div>
+                   <div className="edit-button-container">
+                       <button className="delete-button" onClick={handleDeleteClick}>
+                           Delete
+                       </button>
+                   </div>
+               </div>
+
+
             </div>
   
         </div>
@@ -274,4 +281,4 @@ function ProjectList() {
     );
 }
 
-export default ProjectList;
+export default EditList;
