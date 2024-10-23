@@ -21,13 +21,13 @@ export const AuthProvider = ({ children }) => {
       localStorage.setItem('auth', JSON.stringify(authData));
 
       // Then fetch user data
-      const userResponse = await axiosInstance.get('/user', {
+      const userResponse = await axiosInstance.get('/users/myInfo', {
         headers: { Authorization: `Bearer ${authData.accessToken}` }
       });
-
+      console.log("User response:", userResponse.data.result.roles[0].name);
       // Set user data
-      setUser(userResponse.data);
-      localStorage.setItem('user', JSON.stringify(userResponse.data));
+      setUser(userResponse.data.result);
+      localStorage.setItem('user', JSON.stringify(userResponse.data.result));
 
       return userResponse.data; // Return user data in case it's needed in the component
     } catch (error) {

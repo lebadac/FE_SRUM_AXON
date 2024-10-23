@@ -22,18 +22,20 @@ function App() {
             <Route path="/login" element={<Login />} />
             <Route path="/signup" element={<Signup />} />
             <Route path="/forgot-password" element={<ForgotPassword />} />
-            <Route path="/dashboard" element={<Dashboard />} />
+            {/* <Route path="/dashboard" element={<Dashboard />} /> */}
 
 
             {/* Protected route for all authenticated users */}
             <Route element={<AuthRoute />}>
               <Route path="/" element={<HomePage />} />
+              {/* Protected route for ADMIN users only */}
+              <Route element={<AuthRoute allowedRoles={['ADMIN']} />}>
+                <Route path="/dashboard" element={<Dashboard />} />
+              </Route>
+              <Route element={<AuthRoute allowedRoles={['LEADER']} />}>
+                <Route path="/project"  />
+              </Route>
             </Route>
-
-            {/* Protected route for ADMIN users only
-            <Route element={<AuthRoute allowedRoles={['ADMIN']} />}>
-              <Route path="/dashboard" element={<Dashboard />} />
-            </Route> */}
 
             {/* Catch-all route for 404 */}
             <Route path="*" element={<Navigate to="/" replace />} />

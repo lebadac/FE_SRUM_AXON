@@ -19,7 +19,7 @@ const AuthRoute = ({ allowedRoles }) => {
     return <Navigate to="/login" state={{ from: location }} replace />;
   }
 
-  if (allowedRoles && (!user || !allowedRoles.includes(user.role))) {
+  if (allowedRoles && (!user || !allowedRoles.includes(user.roles[0].name))) {
     console.log("User does not have required role. Redirecting to home.");
     notify("You don't have permission to access this page.", "error");
     return <Navigate to="/" replace />;

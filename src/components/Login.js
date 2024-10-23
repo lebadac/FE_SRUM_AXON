@@ -21,8 +21,9 @@ const Login = () => {
       });
 
       if (response.status === 200) {
-        const { accessToken } = response.result.token;
-        console.log("Login successful. Token received:", { accessToken });
+        console.log("Response:", response);
+        const accessToken = response.data.result.token;
+        console.log("Login successful. Token received:", accessToken);
 
         try {
           await login({ accessToken });

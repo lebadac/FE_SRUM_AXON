@@ -52,10 +52,10 @@ const Header = () => {
             {user && (
               <div className="flex items-center mr-4">
                 <span className="text-sm text-gray-700 dark:text-gray-300 mr-2 font-inter">
-                  {user.name}
+                  {user.name ?? 'User'}
                 </span>
                 <div className="w-8 h-8 bg-primary-200 dark:bg-primary-600 rounded-full flex items-center justify-center text-primary-700 dark:text-white font-semibold font-inter">
-                  {user.name.charAt(0).toUpperCase()}
+                  {user.name?.charAt(0).toUpperCase() ?? 'U'}
                 </div>
               </div>
             )}
