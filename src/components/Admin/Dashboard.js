@@ -1,48 +1,37 @@
-import React, { useState } from 'react';
-import { FaProjectDiagram, FaUserGraduate, FaUserTie } from 'react-icons/fa';
+import React, { useState, useEffect } from 'react';
+import { FaUserGraduate } from 'react-icons/fa';
+import axiosInstance from '../../api/axios'; // Ensure axiosInstance is correctly set up
 import ProjectApplicantsPopup from './ProjectApplicantsPopup';
 
 const Dashboard = () => {
   const [activeTab, setActiveTab] = useState('pending');
   const [selectedProject, setSelectedProject] = useState(null);
+  const [projects, setProjects] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
-  const projects = [
-    {
-      id: 'P1',
-      name: 'The regular lineup',
-      leader: 'Nguyen Van A',
-      skills: 'Cooking, Communication, Signing',
-      startDate: '20/10/2024',
-      endDate: '20/11/2024',
-      quantity: '30',
-      location: 'Binh Thanh',
-      status: 'pending'
-    },
-    {
-      id: 'P2',
-      name: 'EcoSummer',
-      leader: 'Nguyen Van B',
-      skills: 'Event-organizing, basic media skill, construction skill',
-      startDate: '29/10/2024',
-      endDate: '29/11/2024',
-      quantity: '50',
-      location: 'District 1',
-      status: 'approved'
-    },
-    {
-      id: 'P3',
-      name: 'Green City',
-      leader: 'Tran Thi C',
-      skills: 'Gardening, Environmental awareness, Team management',
-      startDate: '05/11/2024',
-      endDate: '05/12/2024',
-      quantity: '40',
-      location: 'District 2',
-      status: 'pending'
-    }
-  ];
+  useEffect(() => {
+    const fetchProjects = async () => {
+      try {
+        const response = await axiosInstance.get('/projects');
+        console.log('API Response:', response.data); // Debugging line
+        if (response.data.code === 1000) {
+          setProjects(response.data.result);
+        } else {
+          setError('Failed to fetch projects');
+        }
+      } catch (err) {
+        console.error('Error fetching projects:', err); // Debugging line
+        setError('An error occurred while fetching projects');
+      } finally {
+        setLoading(false);
+      }
+    };
 
-  const filteredProjects = projects.filter(project => project.status === activeTab);
+    fetchProjects();
+  }, []);
+
+  const filteredProjects = projects.filter(project => project.action.toLowerCase() === activeTab);
 
   const openProjectApplicants = (project) => {
     setSelectedProject(project);
@@ -51,6 +40,9 @@ const Dashboard = () => {
   const closeProjectApplicants = () => {
     setSelectedProject(null);
   };
+
+  if (loading) return <div>Loading...</div>;
+  if (error) return <div>{error}</div>;
 
   return (
     <div className="bg-light-bg dark:bg-gray-900 min-h-screen font-jakarta">
@@ -94,6 +86,16 @@ const Dashboard = () => {
               >
                 Approved
               </div>
+              <div
+                className={`text-[16px] font-semibold font-montserrat cursor-pointer px-4 py-2 rounded-t-lg transition-colors duration-200 ${
+                  activeTab === 'rejected'
+                    ? 'text-primary-700 dark:text-primary-400 bg-white dark:bg-gray-800 border-t border-l border-r border-gray-300 dark:border-gray-600'
+                    : 'text-gray-400 hover:text-gray-600 dark:hover:text-gray-300'
+                }`}
+                onClick={() => setActiveTab('rejected')}
+              >
+                Rejected
+              </div>
             </div>
             <div className="w-full h-px bg-gray-300 dark:bg-gray-600"></div>
           </div>
@@ -118,8 +120,8 @@ const Dashboard = () => {
                 <div key={project.id} className="border-b border-gray-300 dark:border-gray-600 grid grid-cols-9 gap-4 py-3 px-4 text-gray-700 font-inter hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors text-xs items-center">
                   <div className="font-inter font-normal dark:text-gray-300 text-[16px] flex items-center justify-center">{project.id}</div>
                   <div className="font-inter font-normal dark:text-gray-300 text-[16px] flex items-center justify-center">{project.name}</div>
-                  <div className="font-inter font-normal dark:text-gray-300 text-[16px] flex items-center justify-center">{project.leader}</div>
-                  <div className="col-span-2 font-inter font-normal dark:text-gray-300 text-[16px] flex items-center justify-center">{project.skills}</div>
+                  <div className="font-inter font-normal dark:text-gray-300 text-[16px] flex items-center justify-center">{project.leaderId}</div>
+                  <div className="col-span-2 font-inter font-normal dark:text-gray-300 text-[16px] flex items-center justify-center">{project.skills.join(', ')}</div>
                   <div className="font-inter font-normal dark:text-gray-300 text-[16px] flex items-center justify-center">{project.startDate}</div>
                   <div className="font-inter font-normal dark:text-gray-300 text-[16px] flex items-center justify-center">{project.endDate}</div>
                   <div className="font-inter font-normal dark:text-gray-300 text-[16px] flex items-center justify-center">{project.quantity}</div>
@@ -147,6 +149,9 @@ const Dashboard = () => {
                       )}
                       {activeTab === 'approved' && (
                         <span className="text-green-600 font-semibold">Approved</span>
+                      )}
+                      {activeTab === 'rejected' && (
+                        <span className="text-red-600 font-semibold">Rejected</span>
                       )}
                     </div>
                   </div>

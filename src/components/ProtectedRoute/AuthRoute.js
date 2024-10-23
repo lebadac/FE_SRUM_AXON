@@ -8,24 +8,16 @@ const AuthRoute = ({ allowedRoles }) => {
   const location = useLocation();
   const notify = useNotify();
 
-  useEffect(() => {
-    console.log("AuthRoute rendered. Auth state:", auth);
-    console.log("User state:", user);
-  }, [auth, user]);
-
   if (!auth.accessToken) {
-    console.log("No access token found. Redirecting to login.");
     notify("Please log in to access this page.", "error");
     return <Navigate to="/login" state={{ from: location }} replace />;
   }
 
   if (allowedRoles && (!user || !allowedRoles.includes(user.roles[0].name))) {
-    console.log("User does not have required role. Redirecting to home.");
     notify("You don't have permission to access this page.", "error");
     return <Navigate to="/" replace />;
   }
 
-  console.log("Access granted. Rendering protected route.");
   return <Outlet />;
 };
 

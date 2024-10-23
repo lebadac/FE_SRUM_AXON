@@ -1,23 +1,43 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import axiosInstance from '../../api/axios'; // Ensure axiosInstance is correctly set up
 
-const ProjectApplicantsPopup = ({ project, onClose }) => {
+const ProjectApplicantsPopup = ({ projectId, projectName, onClose }) => {
   const [activeTab, setActiveTab] = useState('notConfirmed');
+  const [applicants, setApplicants] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
-  // Mock data for applicants (replace this with actual data from your API)
-  const applicants = [
-    { id: 'S1', name: 'Nguyen Thi Xuan', school: 'University of Information Technology', status: 'notConfirmed' },
-    { id: 'S2', name: 'Nguyen Thi Hoa', school: 'Hutech', status: 'notConfirmed' },
-    { id: 'S3', name: 'Nguyen Van A', school: 'University of Information Technology', status: 'accepted' },
-    // Add more applicants as needed
-  ];
+  useEffect(() => {
+    const fetchApplicants = async () => {
+      try {
+        const response = await axiosInstance.get(`/projects/${projectId}/applicants`);
+        console.log('Applicants Response:', response.data); // Debugging line
+        if (response.data.code === 1000) {
+          setApplicants(response.data.result);
+        } else {
+          setError('Failed to fetch applicants');
+        }
+      } catch (err) {
+        console.error('Error fetching applicants:', err); // Debugging line
+        setError('An error occurred while fetching applicants');
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchApplicants();
+  }, [projectId]);
 
   const filteredApplicants = applicants.filter(applicant => applicant.status === activeTab);
+
+  if (loading) return <div>Loading...</div>;
+  if (error) return <div>{error}</div>;
 
   return (
     <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50">
       <div className="w-[932px] h-[669px] p-6 bg-white rounded-2xl flex-col justify-center items-center gap-[27px] inline-flex">
         <div className="w-full flex justify-between items-center">
-          <h2 className="text-2xl font-semibold font-poppins">{project.name} - Applicants</h2>
+          <h2 className="text-2xl font-semibold font-poppins">{projectName} - Applicants</h2>
           <button onClick={onClose} className="text-gray-500 hover:text-gray-700">
             <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />

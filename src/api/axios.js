@@ -15,6 +15,7 @@ export const setupInterceptors = (getAccessToken, logout) => {
     (config) => {
       const accessToken = getAccessToken();
       if (accessToken) {
+        console.log('Adding access token to request:', accessToken); // Debugging line
         config.headers['Authorization'] = `Bearer ${accessToken}`;
       }
       return config;

@@ -1,6 +1,6 @@
 import React from "react";
 import "./App.css";
-import { Routes, Route } from 'react-router-dom'; // Import Routes và Route
+import { Routes, Route, Navigate } from 'react-router-dom'; // Add Navigate to the import
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { AuthProvider } from "./context/AuthProvider";
@@ -9,6 +9,8 @@ import Login from "./components/Login";
 import Header from "./components/Header";
 import Signup from './components/Signup';
 import AuthRoute from './components/ProtectedRoute/AuthRoute';
+import Dashboard from './components/Admin/Dashboard';
+import ForgotPassword from './components/ForgotPassword';
 import ProjectList from './components/projectlist';
 import AfterSubmit from './components/aftersubmit';
 import EditProject from './components/editproject';
@@ -24,10 +26,7 @@ function App() {
             <Route path="/login" element={<Login />} />
             <Route path="/signup" element={<Signup />} />
             <Route path="/forgot-password" element={<ForgotPassword />} />
-            <Route path="/projectlist" element={<ProjectList />} />
-          <Route path="/aftersubmit" element={<AfterSubmit />} />
-          <Route path="/editproject" element={<EditProject />} />
-
+            <Route path="/studentregister" element={<StudentRegister />} />
 
             {/* Protected route for all authenticated users */}
             <Route element={<AuthRoute />}>
@@ -37,7 +36,9 @@ function App() {
                 <Route path="/dashboard" element={<Dashboard />} />
               </Route>
               <Route element={<AuthRoute allowedRoles={['LEADER']} />}>
-                <Route path="/project"  />
+                <Route path="/projectlist" element={<ProjectList />} />
+                <Route path="/aftersubmit" element={<AfterSubmit />} />
+                <Route path="/editproject" element={<EditProject />} />
               </Route>
             </Route>
 

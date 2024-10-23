@@ -1,7 +1,7 @@
 import React, { createContext, useState, useContext, useEffect } from 'react';
-import axiosInstance from '../api/axios'; // Make sure this import path is correct
+import axiosInstance from '../api/axios';
 
-const AuthContext = createContext({});
+const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
   const [auth, setAuth] = useState({});
@@ -16,23 +16,19 @@ export const AuthProvider = ({ children }) => {
 
   const login = async (authData) => {
     try {
-      // Set the auth data first
       setAuth(authData);
       localStorage.setItem('auth', JSON.stringify(authData));
 
-      // Then fetch user data
       const userResponse = await axiosInstance.get('/users/myInfo', {
         headers: { Authorization: `Bearer ${authData.accessToken}` }
       });
-      console.log("User response:", userResponse.data.result.roles[0].name);
-      // Set user data
       setUser(userResponse.data.result);
       localStorage.setItem('user', JSON.stringify(userResponse.data.result));
 
-      return userResponse.data; // Return user data in case it's needed in the component
+      return userResponse.data;
     } catch (error) {
       console.error('Error fetching user data:', error);
-      throw error; // Rethrow the error so it can be handled in the component
+      throw error;
     }
   };
 
@@ -43,11 +39,22 @@ export const AuthProvider = ({ children }) => {
     localStorage.removeItem('user');
   };
 
+  const getAccessToken = () => {
+    const storedAuth = localStorage.getItem('auth');
+    return storedAuth ? JSON.parse(storedAuth).accessToken : null;
+  };
+
   return (
-    <AuthContext.Provider value={{ auth, setAuth, user, setUser, login, logout }}>
+    <AuthContext.Provider value={{ auth, user, login, logout, getAccessToken }}>
       {children}
     </AuthContext.Provider>
   );
 };
 
-export const useAuth = () => useContext(AuthContext);
+export const useAuth = () => {
+  const context = useContext(AuthContext);
+  if (!context) {
+    throw new Error('useAuth must be used within an AuthProvider');
+  }
+  return context;
+};
