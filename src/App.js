@@ -1,16 +1,18 @@
-import React from 'react';
-import './App.css';
-import { Routes, Route, Navigate } from 'react-router-dom';
-import { ToastContainer } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
-import { AuthProvider } from './context/AuthProvider';
-import HomePage from './components/Home'
-import Login from './components/Login';
+import React from "react";
+import "./App.css";
+import { Routes, Route } from 'react-router-dom'; // Import Routes và Route
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import { AuthProvider } from "./context/AuthProvider";
+import HomePage from "./components/Home";
+import Login from "./components/Login";
 import Header from "./components/Header";
 import Signup from './components/Signup';
 import AuthRoute from './components/ProtectedRoute/AuthRoute';
-import Dashboard from './components/Admin/Dashboard';
-import ForgotPassword from './components/ForgotPassword';
+import ProjectList from './components/projectlist';
+import AfterSubmit from './components/aftersubmit';
+import EditProject from './components/editproject';
+import StudentRegister from './components/StudentRegister';
 
 function App() {
   return (
@@ -22,7 +24,9 @@ function App() {
             <Route path="/login" element={<Login />} />
             <Route path="/signup" element={<Signup />} />
             <Route path="/forgot-password" element={<ForgotPassword />} />
-            {/* <Route path="/dashboard" element={<Dashboard />} /> */}
+            <Route path="/projectlist" element={<ProjectList />} />
+          <Route path="/aftersubmit" element={<AfterSubmit />} />
+          <Route path="/editproject" element={<EditProject />} />
 
 
             {/* Protected route for all authenticated users */}
@@ -46,5 +50,6 @@ function App() {
     </AuthProvider>
   );
 }
+
 
 export default App;
