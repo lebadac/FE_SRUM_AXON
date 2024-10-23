@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import banner from "../assets/right-side-banner.jpg"; // Thay bằng đường dẫn banner phù hợp
-
+import locationIcon from "../assets/location.svg";
 function StudentRegister() {
   // Quản lý trạng thái của các trường
   const [firstName, setFirstName] = useState("");
@@ -8,8 +8,11 @@ function StudentRegister() {
   const [gender, setGender] = useState("Male");
   const [studentID, setStudentID] = useState("");
   const [email, setEmail] = useState("");
+  const [communitySize, setCommunitySize] = useState("");
   const [mobileNumber, setMobileNumber] = useState("");
   const [communityName, setCommunityName] = useState("");
+  const [startDate, setStartDate] = useState("");
+  const [endDate, setEndDate] = useState("");
   const [skills, setSkills] = useState({
     eventOrganizing: false,
     media: false,
@@ -27,10 +30,19 @@ function StudentRegister() {
   const handleEmailChange = (e) => setEmail(e.target.value);
   const handleMobileNumberChange = (e) => setMobileNumber(e.target.value);
   const handleCommunityNameChange = (e) => setCommunityName(e.target.value);
+  const handleStartDateChange = (e) => setStartDate(e.target.value);
+  const handleEndDateChange = (e) => setEndDate(e.target.value);
+  const handleSizeChange = (e) => setCommunitySize(e.target.value);
   const handleSkillsChange = (e) => {
     setSkills({ ...skills, [e.target.name]: e.target.checked });
   };
+  const [isOpen, setIsOpen] = useState(true); // State to control modal visibility
 
+  const closeModal = () => {
+    setIsOpen(false); // Update state to close the modal
+  };
+
+  if (!isOpen) return null;
   // Gửi form (giả sử có chức năng submit)
   const handleSubmit = () => {
     const formData = {
@@ -195,7 +207,56 @@ function StudentRegister() {
                     </label>
                   </div>
                 </div>
+                <div className={`time ${startDate && endDate ? "active" : ""}`}>
+                  {/* <img src={calendarImage} alt="Calendar" /> */}
+                  <input
+                    type="date"
+                    className="date-picker"
+                    onChange={handleStartDateChange}
+                    placeholder="Select Start Date"
+                  />
+
+                  <input
+                    type="date"
+                    className="date-picker"
+                    onChange={handleEndDateChange}
+                    placeholder="Select End Date"
+                  />
+
+                  <img
+                    id="location-icon"
+                    src={locationIcon}
+                    alt="Location"
+                    className="icon"
+                  />
+                  <select
+                    className="location-picker"
+                    onChange={handleSizeChange}
+                  >
+                    <option value="">Select Location</option>
+                    <option value="Ho Chi Minh">Ho Chi Minh</option>
+                    <option value="Ho Chi Minh">Ha Noi</option>
+                  </select>
+                </div>
+
+                <div
+                  className={`community-size ${communitySize ? "active" : ""}`}
+                >
+                  <h3>Community Size</h3>
+                  <select className="size-picker" onChange={handleSizeChange}>
+                    <option value="" disabled hidden>
+                      Select community size
+                    </option>
+                    <option value="under50">Under 50 members</option>
+                    <option value="50-100">50-100 members</option>
+                    <option value="over100">Over 100 members</option>
+                  </select>
+                </div>
               </div>
+            </div>
+            <div className="button-container">
+              <button className="create-button">Create</button>
+              <button className="create-button cancel">Cancel</button>
             </div>
           </div>
         </div>
