@@ -135,9 +135,13 @@ function ProjectList() {
                         <option value="over100">Over 100 members</option>
                     </select>
                 </div>
-                
-                <div className="button-container">
-                    <button className="create-button">Create</button>
+                <div className ="edit-container">
+                    <div className="edit-button-container">
+                        <button className="resubmit-button">Resubmit</button>
+                    </div>
+                    <div className="edit-button-container">
+                        <button className="delete-button">Delete</button>
+                    </div>
                 </div>
 
             </div>
@@ -149,9 +153,10 @@ function ProjectList() {
             <img id='img1' src={banner} alt="Right Side Banner" />
         </div>
       </div>
-        </div>
+      </div>
     );
 }
 
 export default ProjectList;
+
 
