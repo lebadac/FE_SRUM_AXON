@@ -38,7 +38,7 @@
   height: 867px;
   margin: 100px 60px;
   display: flex;
-
+}
 .after-submit-container,
 .leader-container {
     display: flex;
@@ -65,10 +65,11 @@
 }
 #input-project {
     margin-top: 20px;
-    margin-bottom: 60px;
+    margin-bottom: 5px;
     width: 537px;
     height: 62px;
 }
+
 
 
 .project-name{
@@ -81,6 +82,7 @@
 }
 
 .require-skill h3 {
+  margin-top: 54px;
   font-weight: bold;
   color: #2d653d; /* Màu xanh đậm cho tiêu đề */
   margin-bottom: 15px;
@@ -139,7 +141,7 @@
 }
 .time {
     display: flex;
-    margin: 26px 0;
+    margin-top: 26px;
 }
 
 .community-size {
@@ -148,6 +150,8 @@
 
 .size-picker {
     margin-top: 20px;
+    font-size: 20px;
+    padding-left: 17px;
 }
 #location-icon{
     padding-left:7px;
@@ -184,6 +188,7 @@
     margin-bottom: 135px; 
     position: relative;
     transition: all 0.3s ease-in-out;
+    transition: background-color 0.7s ease;
 }
 
 .step.circle.step2 {
@@ -199,16 +204,16 @@
   width: 2px;
   background-color: #b0c5b3;
   position: absolute;
-  top: 40px; /* Đặt v��� trí bắt đầu của đường nối ngay sau chấm tròn */
-  z-index: 0;
+  top: 40px; 
+  z-index: -1;
+  transition: background-color 0.7s ease;
 }
 
 /* Tùy chỉnh chiều dài các đoạn nối */
 .line1 {
-    height: 152px;
-    /* padding-right: 31px; */
+    height: 164px;
     right: 81px;
-    top: 55px;
+    top: 45px;
 }
 
 .line2 {
@@ -222,7 +227,9 @@
     top: 465px;
     right: 81px;
 }
-
+.line.active {
+    background-color: #4caf50; /* Active color */
+}
 .step.active {
     background-color: #007730;
     color: white;
@@ -377,9 +384,11 @@ select {
     justify-content: center;
     align-items: center;
 }
+.create-button-container,
 .edit-button-container{
     margin-right: 20px;
 }
+.create-button-container,
 .edit-button-container,
 .button-container {
     display: flex;
