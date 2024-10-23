@@ -428,22 +428,16 @@ select {
     flex-direction: column;
     justify-content: space-between;
 }
+
+
 .after-submit-left-container {
     justify-content: flex-start;
-    width: 60%;
     height: 100%;
+    width: 61.3%;
     padding: 20px;
     border-radius: 10px;
     display: flex;
     flex-direction: column;
-}
-
-.after-submit-left-container {
-  width: 60%;
-  padding: 20px;
-  border-radius: 10px;
-  display: flex;
-  flex-direction: column;
 }
 
 .after-submit-left-container h2 {
