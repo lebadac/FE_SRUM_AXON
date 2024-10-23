@@ -48,8 +48,8 @@ function StudentRegister() {
 
   return (
     <div className="screen">
-      <div className="container">
-        <div className="left-container">
+      <div className="student-container">
+        <div className="left-student-container">
           <div>
             <div className="fill-in">
               <div className="firstname">

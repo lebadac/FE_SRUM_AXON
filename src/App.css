@@ -21,7 +21,7 @@
   align-items: center; /* Center vertically */
 }
 
-.container {
+.student-container {
   display: flex;
   z-index: 1000;
   margin: 125px 114px;
@@ -32,7 +32,7 @@
   background: #a2dab2;
   box-shadow: 4px 4px 100px 20px rgba(0, 0, 0, 0.06);
 }
-.left-container {
+.left-student-container {
   width: 50%;
   height: 867px;
   margin: 100px 60px;
@@ -173,6 +173,17 @@
 .firstname {
   grid-area: 1 / 1 / 2 / 2;
 }
+.community-name h3,
+.email h3,
+.mobile h3,
+.firstname h3,
+.lastname h3 {
+  margin-bottom: 6px;
+}
+
+.community-name {
+  margin-top: 14px;
+}
 .lastname {
   grid-area: 1 / 2 / 2 / 3;
 }
@@ -189,7 +200,7 @@
   top: 20px;
   display: flex;
   flex: 1;
-  justify-content: space-evenly;
+  gap: 43px;
 }
 .gender-ratio > label {
   color: black;
@@ -238,12 +249,12 @@
 }
 
 .skills-box h3 {
-  padding-bottom: 10px;
+  padding-bottom: 16px;
 }
 
 .skills label {
   display: block;
-  margin-bottom: 10px;
+  margin-bottom: 16px;
 }
 
 .skills-box::-webkit-scrollbar {
