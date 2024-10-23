@@ -32,7 +32,7 @@ function ProjectList() {
                                 <p className="project-name">Project: abcdassdbggfhmfhjm</p>
                                 <p className="status approved">Status: Approved</p>
                             </div>
-                            
+
                         </div>
                         <div className="button-container">
                             <button className="create-button">Create</button>
@@ -41,7 +41,7 @@ function ProjectList() {
                 </div>
 
             {/* Right Container */}
-            <div className="right-container">
+            <div className="leader-right-container">
                 <img id='img1' src={banner} alt="Right Side Banner" />
             </div>
         </div>

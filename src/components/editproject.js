@@ -45,8 +45,8 @@ function ProjectList() {
     };
 
     return (
-            <div className="container">
-                <div className="left-container">
+            <div className="leader-container">
+                <div className="leader-left-container">
                     
                 <div className="time-line">
             <div className="circle-container">
@@ -67,7 +67,7 @@ function ProjectList() {
             </div>
             {/* Form điền thông tin */}
             
-            <div className="fill-in">
+            <div className="leader-fill-in">
                 <div className={`project-name ${currentStep === 1 ? 'active' : ''}`}>
                     <h3>Community Name</h3>
                     <input
@@ -148,7 +148,7 @@ function ProjectList() {
         </div>
         
 
-        <div className="right-container">
+        <div className="leader-right-container">
             <img id='img1' src={banner} alt="Right Side Banner" />
         </div>
       </div>
@@ -156,3 +156,5 @@ function ProjectList() {
 }
 
 export default ProjectList;
+
+

@@ -18,7 +18,7 @@
 }
 
 .after-submit-container,
-.container {
+.leader-container {
     display: flex;
     z-index: 1000;
     margin: 125px 114px;
@@ -35,7 +35,7 @@
     justify-content: center;
     align-items: center;
 }
-.left-container{
+.leader-left-container{
     width: 792px;
     height: 867px;
     margin: 32px 99px 23px 51px;
@@ -94,11 +94,11 @@
     object-fit: contain; /* Ensure the SVG fits within the specified dimensions */
 }
 
-.fill-in{
+.leader-fill-in{
     width: 100%;
 }
 
-.right-container{
+.leader-right-container{
     width: 708px;
     height: 867px;
     right: 0;
