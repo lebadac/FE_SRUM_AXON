@@ -1,12 +1,13 @@
 import axios from 'axios';
 
-const BASE_URL = "http://localhost:8070";
+const BASE_URL = "http://localhost:8080/scrum-project";
 
 const axiosInstance = axios.create({
   baseURL: BASE_URL,
   headers: {
     'Content-Type': 'application/json',
   },
+  withCredentials: true,  // Add this line
 });
 
 export const setupInterceptors = (getAccessToken, logout) => {

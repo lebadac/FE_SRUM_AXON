@@ -7,7 +7,6 @@ import { AuthProvider } from "./context/AuthProvider";
 import HomePage from "./components/Home";
 import Login from "./components/Login";
 import Header from "./components/Header";
-import Footer from "./components/Footer";
 import Signup from './components/Signup';
 import AuthRoute from './components/ProtectedRoute/AuthRoute';
 import ProjectList from './components/projectlist';
@@ -16,15 +15,41 @@ import EditProject from './components/editproject';
 import StudentRegister from './components/StudentRegister';
 
 function App() {
-    return (
-      <>
-        <Routes>
-          <Route path="/projectlist" element={<ProjectList />} />
+  return (
+    <AuthProvider>
+      <div className="flex flex-col min-h-screen">
+        <Header />
+        <main className="flex-grow">
+          <Routes>
+            <Route path="/login" element={<Login />} />
+            <Route path="/signup" element={<Signup />} />
+            <Route path="/forgot-password" element={<ForgotPassword />} />
+            <Route path="/projectlist" element={<ProjectList />} />
           <Route path="/aftersubmit" element={<AfterSubmit />} />
           <Route path="/editproject" element={<EditProject />} />
-        </Routes>
-      </>
-    );
-  }
+
+
+            {/* Protected route for all authenticated users */}
+            <Route element={<AuthRoute />}>
+              <Route path="/" element={<HomePage />} />
+              {/* Protected route for ADMIN users only */}
+              <Route element={<AuthRoute allowedRoles={['ADMIN']} />}>
+                <Route path="/dashboard" element={<Dashboard />} />
+              </Route>
+              <Route element={<AuthRoute allowedRoles={['LEADER']} />}>
+                <Route path="/project"  />
+              </Route>
+            </Route>
+
+            {/* Catch-all route for 404 */}
+            <Route path="*" element={<Navigate to="/" replace />} />
+          </Routes>
+        </main>
+        <ToastContainer position="top-right" autoClose={3000} hideProgressBar={false} />
+      </div>
+    </AuthProvider>
+  );
+}
+
 
 export default App;
