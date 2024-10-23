@@ -165,8 +165,6 @@ const Signup = () => {
           </Link>
         </p>
       </div>
-
-      <ToastContainer />
     </section>
   );
 };

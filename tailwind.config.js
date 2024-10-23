@@ -43,6 +43,8 @@ module.exports = {
         'jakarta': ['Plus Jakarta Sans', 'sans-serif'],
         'poppins': ['Poppins', 'sans-serif'],
         'inter': ['Inter', 'sans-serif'],
+        'montserrat': ['Montserrat', 'sans-serif'],
+        'kantumruy': ['Kantumruy Pro', 'sans-serif'],
       },
     },
   },

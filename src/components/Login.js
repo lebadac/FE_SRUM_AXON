@@ -10,45 +10,33 @@ const Login = () => {
   const { register, handleSubmit, formState: { errors } } = useForm();
   const navigate = useNavigate();
   const location = useLocation();
-  const { setAuth, setUser } = useAuth();
+  const { login } = useAuth();
 
   const onSubmit = async (data) => {
     try {
+      console.log("Submitting data:", data);
       const response = await axiosInstance.post('/auth/token', {
-        email: data.email,
+        username: data.username,
         password: data.password,
       });
 
       if (response.status === 200) {
         const { accessToken } = response.result.token;
         console.log("Login successful. Token received:", { accessToken });
-        
-        // Update auth state and storage
-        setAuth({ accessToken });
-        if (data.rememberMe) {
-          localStorage.setItem('accessToken', accessToken);
-        } else {
-          sessionStorage.setItem('accessToken', accessToken);
+
+        try {
+          await login({ accessToken });
+          toast.success("Login successful!", { autoClose: 1000 });
+          const from = location.state?.from?.pathname || "/";
+          console.log("Navigating to:", from);
+          setTimeout(() => {
+            navigate(from, { replace: true });
+          }, 1500);
+        } catch (userError) {
+          console.error('Error fetching user data:', userError);
+          toast.error("Error fetching user data. Please try again.");
         }
-
-        // // Fetch user data using the new token
-        // try {
-        //   const userResponse = await axiosInstance.get('/user');
-        //   console.log('Fetched user data:', userResponse.data);
-        //   setUser(userResponse.data);
-        // } catch (userError) {
-        //   console.error('Error fetching user data:', userError);
-        // }
-
-        toast.success("Login successful!", { autoClose: 1000 });
-
-        // Navigate to the intended page or home page
-        const from = location.state?.from?.pathname || "/";
-        console.log("Navigating to:", from);
-        setTimeout(() => {
-          navigate(from, { replace: true });
-        }, 1500);
-      } 
+      }
     } catch (error) {
       console.error("Error during login:", error);
       toast.error(error.response?.data?.message || "An error occurred during login. Please try again.");
@@ -65,20 +53,13 @@ const Login = () => {
             </h1>
             <form onSubmit={handleSubmit(onSubmit)} className="space-y-4 md:space-y-6">
               <div>
-                <label htmlFor="email" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white font-inter">Email</label>
+                <label htmlFor="username" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white font-inter">Username</label>
                 <input
-                  type="email"
-                  {...register("email", {
-                    required: "Email is required",
-                    pattern: {
-                      value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
-                      message: "Please enter a valid email address",
-                    },
-                  })}
-                  placeholder="Email"
-                  className="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white font-inter"
+                  type="text"
+                  {...register("username", { required: "Username is required" })}
+                  className="w-full p-2.5 font-inter"
                 />
-                {errors.email && <p className="text-red-500 mt-2 font-inter">{errors.email.message}</p>}
+                {errors.username && <p className="text-red-500 mt-2 font-inter">{errors.username.message}</p>}
               </div>
 
               <div>
@@ -87,30 +68,21 @@ const Login = () => {
                   type="password"
                   {...register("password", {
                     required: "Password is required",
-                    minLength: {
-                      value: 8,
-                      message: "Password must be at least 8 characters long",
-                    },
                   })}
-                  placeholder="••••••••"
-                  className="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white font-inter"
+                  className="w-full p-2.5 font-inter"
                 />
                 {errors.password && <p className="text-red-500 mt-2 font-inter">{errors.password.message}</p>}
               </div>
 
               <div className="flex items-center justify-between">
                 <div className="flex items-start">
-                  <div className="flex items-center h-5">
-                    <input
-                      id="rememberMe"
-                      {...register("rememberMe")}
-                      type="checkbox"
-                      className="w-4 h-4 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-primary-300 dark:bg-gray-700 dark:border-gray-600 dark:focus:ring-primary-600 dark:ring-offset-gray-800"
-                    />
-                  </div>
-                  <div className="ml-3 text-sm">
-                    <label htmlFor="rememberMe" className="text-gray-500 dark:text-gray-300 font-inter">Remember me</label>
-                  </div>
+                  <input
+                    id="rememberMe"
+                    {...register("rememberMe")}
+                    type="checkbox"
+                    className="w-4 h-4"
+                  />
+                  <label htmlFor="rememberMe" className="ml-3 text-sm text-gray-500 dark:text-gray-300 font-inter">Remember me</label>
                 </div>
                 <Link to="/forgot-password" className="text-sm text-primary-600 hover:underline dark:text-primary-500 font-inter">Forgot password?</Link>
               </div>
@@ -126,8 +98,6 @@ const Login = () => {
           </div>
         </div>
       </div>
-      {/* Toast container to display notifications */}
-      <ToastContainer autoClose={1000} />
     </section>
   );
 };

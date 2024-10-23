@@ -7,7 +7,6 @@ import { AuthProvider } from './context/AuthProvider';
 import HomePage from './components/Home'
 import Login from './components/Login';
 import Header from "./components/Header";
-import Footer from "./components/Footer";
 import Signup from './components/Signup';
 import AuthRoute from './components/ProtectedRoute/AuthRoute';
 import Dashboard from './components/Admin/Dashboard';
@@ -40,7 +39,6 @@ function App() {
             <Route path="*" element={<Navigate to="/" replace />} />
           </Routes>
         </main>
-        <Footer />
         <ToastContainer position="top-right" autoClose={3000} hideProgressBar={false} />
       </div>
     </AuthProvider>

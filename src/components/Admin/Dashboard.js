@@ -1,6 +1,11 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { FaProjectDiagram, FaUserGraduate, FaUserTie } from 'react-icons/fa';
+import ProjectApplicantsPopup from './ProjectApplicantsPopup';
 
-const ProjectsPage = () => {
+const Dashboard = () => {
+  const [activeTab, setActiveTab] = useState('pending');
+  const [selectedProject, setSelectedProject] = useState(null);
+
   const projects = [
     {
       id: 'P1',
@@ -10,7 +15,8 @@ const ProjectsPage = () => {
       startDate: '20/10/2024',
       endDate: '20/11/2024',
       quantity: '30',
-      location: 'Binh Thanh'
+      location: 'Binh Thanh',
+      status: 'pending'
     },
     {
       id: 'P2',
@@ -20,82 +26,145 @@ const ProjectsPage = () => {
       startDate: '29/10/2024',
       endDate: '29/11/2024',
       quantity: '50',
-      location: 'District 1'
+      location: 'District 1',
+      status: 'approved'
+    },
+    {
+      id: 'P3',
+      name: 'Green City',
+      leader: 'Tran Thi C',
+      skills: 'Gardening, Environmental awareness, Team management',
+      startDate: '05/11/2024',
+      endDate: '05/12/2024',
+      quantity: '40',
+      location: 'District 2',
+      status: 'pending'
     }
   ];
 
+  const filteredProjects = projects.filter(project => project.status === activeTab);
+
+  const openProjectApplicants = (project) => {
+    setSelectedProject(project);
+  };
+
+  const closeProjectApplicants = () => {
+    setSelectedProject(null);
+  };
+
   return (
-    <div className="w-full h-screen relative bg-gray-100">
-      {/* Sidebar */}
-      <div className="w-60 h-full absolute left-0 top-0 bg-gray-800 border-r border-gray-300 flex flex-col items-center gap-6">
-        <div className="w-full p-6 flex flex-col gap-2.5">
-          <div className="w-48 pl-4 pr-[26px] py-[13px] bg-gray-700 rounded-lg flex items-center gap-4">
-            <div className="w-6 h-6"></div>
-            <div className="text-white text-sm font-medium font-sans">Projects</div>
-          </div>
-          <div className="w-48 pl-4 pr-[26px] py-[13px] flex items-center gap-4">
-            <div className="w-6 h-6"></div>
-            <div className="grow text-gray-400 text-sm font-medium font-sans">Student</div>
-            <div className="w-6 h-6 bg-green-500 rounded-full flex items-center justify-center">
-              <div className="text-white text-xs font-medium">2</div>
-            </div>
-          </div>
-          <div className="w-48 pl-4 pr-[26px] py-[13px] flex items-center gap-4">
-            <div className="w-6 h-6"></div>
-            <div className="grow text-gray-400 text-sm font-medium font-sans">Leader</div>
-            <div className="w-6 h-6 bg-green-500 rounded-full flex items-center justify-center">
-              <div className="text-white text-xs font-medium">3</div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      {/* Main content */}
-      <div className="ml-60 h-full flex flex-col">
-        {/* Header */}
-        <div className="h-24 px-6 py-8 bg-white border-b border-gray-300 flex items-center justify-between">
-          <div className="text-gray-800 text-[32px] font-semibold font-sans">Projects</div>
-          <div className="flex items-center gap-[23px]">
-            <div className="text-gray-800 text-sm font-medium font-sans">Moni Roy</div>
-            <div className="w-[18px] h-[18px] relative">
-              <div className="w-1.5 h-1 absolute left-[6px] top-[7px]"></div>
+    <div className="bg-light-bg dark:bg-gray-900 min-h-screen font-jakarta">
+      <div className="w-full grid grid-cols-[200px_1fr] min-h-screen">
+        {/* Sidebar */}
+        <div className="bg-white dark:bg-gray-800 border-r border-gray-300 dark:border-gray-700 p-4 flex flex-col gap-4">
+          <div className="text-gray-900 dark:text-white text-lg font-semibold font-poppins mb-4">Dashboard</div>
+          <div className="flex flex-col gap-2">
+            <div className="bg-primary-600 rounded-lg p-2 flex items-center justify-center gap-2">
+              <span className="font-medium font-inter text-white text-sm">Projects</span>
             </div>
           </div>
         </div>
 
-        {/* Projects table */}
-        <div className="p-6 flex-grow">
-          <div className="rounded-lg border border-gray-300">
-            {/* Table header */}
-            <div className="bg-gray-50 border-b border-gray-300 flex">
-              <div className="w-20 pl-4 pr-3 py-3 font-semibold text-gray-800">Id</div>
-              <div className="w-[153.14px] p-3 font-semibold text-gray-800">Project name</div>
-              <div className="w-[153.14px] p-3 font-semibold text-gray-800">Leader name</div>
-              <div className="w-[200px] p-3 font-semibold text-gray-800">Skills</div>
-              <div className="w-[153.14px] p-3 font-semibold text-gray-800">Start date</div>
-              <div className="w-[153.14px] p-3 font-semibold text-gray-800">End date</div>
-              <div className="w-[100px] p-3 font-semibold text-gray-800">Quantity</div>
-              <div className="w-[153.14px] p-3 font-semibold text-gray-800">Location</div>
-            </div>
+        {/* Main content */}
+        <div className="flex flex-col bg-white dark:bg-gray-900">
+          {/* Header */}
+          <div className="bg-white dark:bg-gray-800 shadow-md p-4"> 
+            <h1 className="text-gray-900 dark:text-white text-xl font-semibold font-poppins">Projects</h1>
+          </div>
 
-            {/* Table body */}
-            {projects.map((project, index) => (
-              <div key={project.id} className="bg-white border-b border-gray-300 flex">
-                <div className="w-20 pl-4 pr-3 py-3 text-gray-600">{project.id}</div>
-                <div className="w-[153.14px] p-3 text-gray-600">{project.name}</div>
-                <div className="w-[153.14px] p-3 text-gray-600">{project.leader}</div>
-                <div className="w-[200px] p-3 text-gray-600">{project.skills}</div>
-                <div className="w-[153.14px] p-3 text-gray-600">{project.startDate}</div>
-                <div className="w-[153.14px] p-3 text-gray-600">{project.endDate}</div>
-                <div className="w-[100px] p-3 text-gray-600">{project.quantity}</div>
-                <div className="w-[153.14px] p-3 text-gray-600">{project.location}</div>
+          <div className="px-4 py-3 w-[100%]">
+            <div className="flex items-center justify-start gap-6 relative">
+              <div
+                className={`text-[16px] font-semibold font-montserrat cursor-pointer px-4 py-2 rounded-t-lg transition-colors duration-200 ${
+                  activeTab === 'pending'
+                    ? 'text-primary-700 dark:text-primary-400 bg-white dark:bg-gray-800 border-t border-l border-r border-gray-300 dark:border-gray-600'
+                    : 'text-gray-400 hover:text-gray-600 dark:hover:text-gray-300'
+                }`}
+                onClick={() => setActiveTab('pending')}
+              >
+                Pending
               </div>
-            ))}
+              <div
+                className={`text-[16px] font-semibold font-montserrat cursor-pointer px-4 py-2 rounded-t-lg transition-colors duration-200 ${
+                  activeTab === 'approved'
+                    ? 'text-primary-700 dark:text-primary-400 bg-white dark:bg-gray-800 border-t border-l border-r border-gray-300 dark:border-gray-600'
+                    : 'text-gray-400 hover:text-gray-600 dark:hover:text-gray-300'
+                }`}
+                onClick={() => setActiveTab('approved')}
+              >
+                Approved
+              </div>
+            </div>
+            <div className="w-full h-px bg-gray-300 dark:bg-gray-600"></div>
+          </div>
+
+          {/* Projects table */}
+          <div className="p-4 flex-grow">
+            <div className="bg-white dark:bg-gray-800 rounded-lg shadow-md overflow-hidden">
+              {/* Table header */}
+              <div className="bg-gray-50 dark:bg-gray-700 border-b border-gray-300 dark:border-gray-600 grid grid-cols-9 gap-2 p-2 text-gray-900 font-inter text-xs">
+                <div className="font-inter dark:text-white font-semibold text-[16px] flex items-center justify-center">Id</div>
+                <div className="font-inter dark:text-white font-semibold text-[16px] flex items-center justify-center">Project name</div>
+                <div className="font-inter dark:text-white font-semibold text-[16px] flex items-center justify-center">Leader name</div>
+                <div className="col-span-2 font-inter dark:text-white font-semibold text-[16px] flex items-center justify-center">Skills</div>
+                <div className="font-inter dark:text-white font-semibold text-[16px] flex items-center justify-center">Start date</div>
+                <div className="font-inter dark:text-white font-semibold text-[16px] flex items-center justify-center">End date</div>
+                <div className="font-inter dark:text-white font-semibold text-[16px] flex items-center justify-center">Quantity</div>
+                <div className="font-inter dark:text-white font-semibold text-[16px] flex items-center justify-center">Actions</div>
+              </div>
+
+              {/* Table body */}
+              {filteredProjects.map((project) => (
+                <div key={project.id} className="border-b border-gray-300 dark:border-gray-600 grid grid-cols-9 gap-4 py-3 px-4 text-gray-700 font-inter hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors text-xs items-center">
+                  <div className="font-inter font-normal dark:text-gray-300 text-[16px] flex items-center justify-center">{project.id}</div>
+                  <div className="font-inter font-normal dark:text-gray-300 text-[16px] flex items-center justify-center">{project.name}</div>
+                  <div className="font-inter font-normal dark:text-gray-300 text-[16px] flex items-center justify-center">{project.leader}</div>
+                  <div className="col-span-2 font-inter font-normal dark:text-gray-300 text-[16px] flex items-center justify-center">{project.skills}</div>
+                  <div className="font-inter font-normal dark:text-gray-300 text-[16px] flex items-center justify-center">{project.startDate}</div>
+                  <div className="font-inter font-normal dark:text-gray-300 text-[16px] flex items-center justify-center">{project.endDate}</div>
+                  <div className="font-inter font-normal dark:text-gray-300 text-[16px] flex items-center justify-center">{project.quantity}</div>
+                  <div className="flex justify-center items-center gap-2">
+                    <button
+                      onClick={() => openProjectApplicants(project)}
+                      className="p-1.5 bg-blue-100 hover:bg-blue-200 rounded-full transition-colors duration-200 flex items-center justify-center"
+                    >
+                      <FaUserGraduate className="h-4 w-4 text-blue-600" />
+                    </button>
+                    <div className="flex justify-center items-center gap-2">
+                      {activeTab === 'pending' && (
+                        <>
+                          <button className="p-1.5 bg-green-100 hover:bg-green-200 rounded-full transition-colors duration-200 flex items-center justify-center">
+                            <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 text-green-600" viewBox="0 0 20 20" fill="currentColor">
+                              <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                            </svg>
+                          </button>
+                          <button className="p-1.5 bg-red-100 hover:bg-red-200 rounded-full transition-colors duration-200 flex items-center justify-center">
+                            <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 text-red-600" viewBox="0 0 20 20" fill="currentColor">
+                              <path fillRule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clipRule="evenodd" />
+                            </svg>
+                          </button>
+                        </>
+                      )}
+                      {activeTab === 'approved' && (
+                        <span className="text-green-600 font-semibold">Approved</span>
+                      )}
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       </div>
+
+      {selectedProject && (
+        <ProjectApplicantsPopup
+          project={selectedProject}
+          onClose={closeProjectApplicants}
+        />
+      )}
     </div>
   );
 };
 
-export default ProjectsPage;
+export default Dashboard;
