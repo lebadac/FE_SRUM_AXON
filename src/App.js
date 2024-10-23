@@ -13,6 +13,7 @@ import AuthRoute from './components/ProtectedRoute/AuthRoute';
 import ProjectList from './components/projectlist';
 import AfterSubmit from './components/aftersubmit';
 import EditProject from './components/editproject';
+import StudentRegister from './components/StudentRegister';
 function App() {
   return (
     // <AuthProvider>
@@ -41,7 +42,7 @@ function App() {
     //     <ToastContainer position="top-right" autoClose={3000} hideProgressBar={false} />
     //   </div>
     // </AuthProvider>
-    <ProjectList/>
+    <StudentRegister/>
 
   );
 }
