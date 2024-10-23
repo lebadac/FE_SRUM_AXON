@@ -35,10 +35,11 @@
 }
 .left-student-container {
   width: 50%;
-  height: 867px;
-  margin: 100px 60px;
-  display: flex;
+  /* height: 867px; */
+  margin: 48px 60px;
+  /* display: flex; */
 }
+
 .after-submit-container,
 .leader-container {
     display: flex;
@@ -69,8 +70,6 @@
     width: 537px;
     height: 62px;
 }
-
-
 
 .project-name{
     margin-bottom: 20px;
@@ -324,6 +323,7 @@
   height: 250px; /* Chiều cao cố định */
   width: 100%;
   overflow-y: auto; /* Kích hoạt cuộn dọc nếu nội dung vượt quá */
+  overflow-x: hidden;
   padding: 18px;
   background-color: #f5f5f5;
   border: 1px solid #ccc;
@@ -372,7 +372,6 @@ select {
   margin-right: 20px;
   border: 1px solid #ccc;
 }
-
 
 
 .step.active + .step.active::before {
@@ -494,6 +493,23 @@ select {
   height: auto;
   border-radius: 10px;
 }
+
+.close-button {
+  position: absolute; /* Định vị tuyệt đối */
+  top: 10px; /* Khoảng cách từ trên */
+  right: 10px; /* Khoảng cách từ bên phải */
+  background-color: transparent;
+  border: none;
+  font-size: 24px; /* Có thể điều chỉnh kích thước */
+  cursor: pointer;
+  color: #333;
+}
+
+.close-button:hover {
+  color: red; /* Thay đổi màu khi hover */
+}
+
+
 
 
 
