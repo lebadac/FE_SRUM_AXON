@@ -4,8 +4,11 @@ import calendarImage from '../assets/calendar.svg'; // Adjust the path as necess
 import locationIcon from '../assets/location.svg';
 import notFillIcon from '../assets/not-fill.svg'; // Adjust the path as necessary
 import fillIcon from '../assets/fill.svg'; // Adjust the path as necessary
+import { useNavigate } from 'react-router-dom';
 
 function ProjectList() {
+    const navigate = useNavigate();
+
     // Quản lý trạng thái của các trường
     const [projectName, setProjectName] = useState('');
     const [communitySize, setCommunitySize] = useState('');
@@ -42,6 +45,14 @@ function ProjectList() {
         const updatedSkills = [...selectedSkills];
         updatedSkills[index] = !updatedSkills[index];
         setSelectedSkills(updatedSkills);
+    };
+
+    // Define the click handler for the project box
+    const handleProjectBoxClick = (projectId) => {
+        // Perform any logic you need when the project box is clicked
+        console.log(`Project box clicked: ${projectId}`);
+        // Example: Navigate to a detailed view of the project
+        navigate(`/project/${projectId}`); // Adjust the path as necessary
     };
 
     return (
@@ -154,4 +165,3 @@ function ProjectList() {
 }
 
 export default ProjectList;
-

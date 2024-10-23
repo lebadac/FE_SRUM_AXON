@@ -4,8 +4,9 @@ import calendarImage from '../assets/calendar.svg'; // Adjust the path as necess
 import locationIcon from '../assets/location.svg';
 import notFillIcon from '../assets/not-fill.svg'; // Adjust the path as necessary
 import fillIcon from '../assets/fill.svg'; // Adjust the path as necessary
+import { useNavigate } from 'react-router-dom';
 
-function ProjectList() {
+function EditProject() {
     // Quản lý trạng thái của các trường
     const [projectName, setProjectName] = useState('');
     const [communitySize, setCommunitySize] = useState('');
@@ -42,6 +43,30 @@ function ProjectList() {
         const updatedSkills = [...selectedSkills];
         updatedSkills[index] = !updatedSkills[index];
         setSelectedSkills(updatedSkills);
+    };
+
+    const navigate = useNavigate();
+
+    const handleCreateButtonClick = () => {
+        // Perform any logic or state updates here
+        console.log('Create button clicked');
+
+        // Navigate to the AfterSubmit component
+        navigate('/aftersubmit');
+    };
+
+    // Define the click handler for the Resubmit button
+    const handleResubmitClick = () => {
+        // Perform any logic you need for resubmitting
+        console.log('Resubmit button clicked');
+        // Example: Call an API to resubmit data
+    };
+
+    // Define the click handler for the Delete button
+    const handleDeleteClick = () => {
+        // Perform any logic you need for deleting
+        console.log('Delete button clicked');
+        // Example: Call an API to delete data
     };
 
     return (
@@ -137,10 +162,14 @@ function ProjectList() {
                 </div>
                 <div className ="edit-container">
                     <div className="edit-button-container">
-                        <button className="resubmit-button">Resubmit</button>
+                        <button className="resubmit-button" onClick={handleResubmitClick}>
+                            Resubmit
+                        </button>
                     </div>
                     <div className="edit-button-container">
-                        <button className="delete-button">Delete</button>
+                        <button className="delete-button" onClick={handleDeleteClick}>
+                            Delete
+                        </button>
                     </div>
                 </div>
 
@@ -157,6 +186,7 @@ function ProjectList() {
     );
 }
 
-export default ProjectList;
+export default EditProject;
+
 
 
