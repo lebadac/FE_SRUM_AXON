@@ -5,11 +5,11 @@ import { useNavigate } from 'react-router-dom';
 function AfterSubmit() {
     const navigate = useNavigate();
 
-    const handleProjectBoxClick = (projectName) => {
+    const handleProjectBoxClick = () => {
         // Perform any logic you need when the project box is clicked
-        console.log(`Project box clicked: ${projectName}`);
+        console.log('Project box clicked');
         // Example: Navigate to a detailed view of the project
-        navigate(`/project/${projectName}`); // Adjust the path as necessary
+        navigate('/editproject'); // Adjust the path as necessary
     };
     
     // Define the click handler for the Create button
@@ -17,7 +17,7 @@ function AfterSubmit() {
         // Perform any logic you need when the button is clicked
         console.log('Create button clicked');
         // Example: Navigate to a new page or reset form state
-        navigate('/create-new'); // Adjust the path as necessary
+        navigate('/projectlist'); // Adjust the path as necessary
     };
 
     return (
@@ -28,22 +28,22 @@ function AfterSubmit() {
                         <div className="after-submit-left-item">
                             <h2>Registered Project</h2>
                             
-                            <div className="project-box" onClick={() => handleProjectBoxClick('abcdassdbggfhmfhjm')}>
+                            <div className="project-box" onClick={() => handleProjectBoxClick('')}>
                                 <p className="project-name">Project: abcdassdbggfhmfhjm</p>
                                 <p className="status rejected">Status: Rejected</p>
                             </div>
 
-                            <div className="project-box" onClick={() => handleProjectBoxClick('abcdassdbggfhmfhjm')}>
+                            <div className="project-box" onClick={() => handleProjectBoxClick('')}>
                                 <p className="project-name">Project: abcdassdbggfhmfhjm</p>
                                 <p className="status rejected">Status: Rejected</p>
                             </div>
                             
-                            <div className="project-box" onClick={() => handleProjectBoxClick('abcdassdbggfhmfhjm')}>
+                            <div className="project-box" onClick={() => handleProjectBoxClick('')}>
                                 <p className="project-name">Project: abcdassdbggfhmfhjm</p>
                                 <p className="status rejected">Status: Rejected</p>
                             </div>
 
-                            <div className="project-box" onClick={() => handleProjectBoxClick('abcdassdbggfhmfhjm')}>
+                            <div className="project-box" onClick={() => handleProjectBoxClick('')}>
                                 <p className="project-name">Project: abcdassdbggfhmfhjm</p>
                                 <p className="status rejected">Status: Rejected</p>
                             </div>
